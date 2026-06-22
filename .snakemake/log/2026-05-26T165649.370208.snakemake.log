@@ -1,0 +1,30 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: grn025
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count
+---------  -------
+convert          1
+inference        1
+mask             1
+total            3
+
+Select jobs to execute...
+Execute 1 jobs...
+[Tue May 26 16:56:50 2026]
+localrule convert:
+    input: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs, results/logs/C3L-00415-23.validated.txt
+    output: results/converted/C3L-00415-23.tif
+    jobid: 1
+    reason: Missing output files: results/converted/C3L-00415-23.tif
+    wildcards: slide=C3L-00415-23
+    resources: tmpdir=/scratch/local/u6073678/1347056
+Shell command: 
+        mkdir -p results/converted
+
+        apptainer exec         --bind /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project:/project         /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif         python /project/scripts/save_image_at_spacing.py.py         -i /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs         -s 0.5         -o /project/results/converted/ 
+        

@@ -1,0 +1,102 @@
+None
+host: notchpeak1
+Building DAG of jobs...
+SLURM run ID: e666bf61-3d05-46fb-8eba-d39f98e40bcc
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Job stats:
+job          count
+---------  -------
+inference        1
+total            1
+
+Select jobs to execute...
+Execute 1 jobs...
+[Wed Jun 17 11:24:10 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219136.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+    output: /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done/219136_hooknet.done, /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/post-processed/219136_hooknettls_post_processed.xml
+    log: /scratch/general/vast/u6073678/hooknet_logs/219136_hooknet.log
+    jobid: 0
+    reason: Missing output files: /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/post-processed/219136_hooknettls_post_processed.xml
+    wildcards: slide=219136
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=4887, disk_mib=4661, tmpdir=<TBD>, slurm_account=stewartp, slurm_partition=notchpeak-gpu, slurm_extra=--qos=notchpeak-gpu --account=notchpeak-gpu --gres=gpu:1 --clusters=notchpeak, runtime=40, cpus_per_task=4
+
+Job 0 has been submitted with SLURM jobid 13530238 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/219136/13530238.log).
+[Wed Jun 17 12:08:14 2026]
+Error in rule inference:
+    message: SLURM-job '13530238' failed, SLURM status is: 'TIMEOUT'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 0
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219136.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+    output: /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done/219136_hooknet.done, /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/post-processed/219136_hooknettls_post_processed.xml
+    log: /scratch/general/vast/u6073678/hooknet_logs/219136_hooknet.log, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/219136/13530238.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp/219136
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136
+        mkdir -p /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136
+        mkdir -p /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done
+        /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp/219136:/home/user/tmp \
+            /scratch/rai/vast1/stewartp/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219136.tif \
+            hooknettls.default.mask_path=/workspace/masks/219136_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219136/ \
+            > /scratch/general/vast/u6073678/hooknet_logs/219136_hooknet.log 2>&1
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/. \
+              /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/
+        touch /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done/219136_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219136.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/219136
+        
+        (command exited with non-zero exit code)
+    external_jobid: 13530238
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Wed Jun 17 12:11:14 2026]
+Error in rule inference:
+    message: None
+    jobid: 0
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219136.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+    output: /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done/219136_hooknet.done, /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/post-processed/219136_hooknettls_post_processed.xml
+    log: /scratch/general/vast/u6073678/hooknet_logs/219136_hooknet.log (check log file(s) for error details)
+    shell:
+        
+        set -euo pipefail
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp/219136
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136
+        mkdir -p /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136
+        mkdir -p /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done
+        /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp/219136:/home/user/tmp \
+            /scratch/rai/vast1/stewartp/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219136.tif \
+            hooknettls.default.mask_path=/workspace/masks/219136_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219136/ \
+            > /scratch/general/vast/u6073678/hooknet_logs/219136_hooknet.log 2>&1
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/. \
+              /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/
+        touch /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done/219136_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219136.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/219136
+        
+        (command exited with non-zero exit code)
+Complete log(s): /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/log/2026-06-17T112410.352501.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

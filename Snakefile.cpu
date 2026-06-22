@@ -1,0 +1,122 @@
+include: "common.smk"
+
+# Runs locally -- no SLURM job needed
+localrules: cpu_complete, all
+
+# ------------------------
+# DEFAULT TARGET
+# ------------------------
+
+rule all:
+    input:
+        f"{config['WORK']}/cpu_complete.done"
+
+# ------------------------
+# VALIDATE INPUT SLIDE
+# ------------------------
+
+rule validate:
+    input:
+        lambda wc: SLIDE_TO_PATH[wc.slide]
+    output:
+        f"{config['PROJECT']}/results/logs/{{slide}}.validated.txt"
+    params:
+        project=config["PROJECT"]
+    resources:
+        slurm_account="stewartp",
+        slurm_partition="notchpeak-freecycle",
+        slurm_extra="--qos=notchpeak-freecycle",
+        runtime=15,       # 0:15:00
+        mem_mb=4000,      # 4G
+        cpus_per_task=1
+    shell:
+        r"""
+        mkdir -p {params.project}/results/logs
+        echo "Validated {input}" > {output}
+        """
+
+# ------------------------
+# SVS -> TIFF (CPU)
+# ------------------------
+rule convert:
+    input:
+        svs=lambda wildcards: SLIDE_TO_PATH[wildcards.slide],
+        validated=f"{config['PROJECT']}/results/logs/{{slide}}.validated.txt"
+    output:
+        f"{config['WORK']}/converted/{{slide}}.tif"
+    params:
+        sif=config["SIF"],
+        project=config["PROJECT"],
+        work=config["WORK"]
+    threads:
+        config["THREADS"]
+    resources:
+        slurm_account="stewartp",
+        slurm_partition="notchpeak-freecycle",
+        slurm_extra="--qos=notchpeak-freecycle",
+        runtime=240,      # 4:00:00
+        mem_mb=32000,     # 32G
+        cpus_per_task=8
+    shell:
+        r"""
+        mkdir -p {params.work}/input
+        mkdir -p {params.work}/converted
+        mkdir -p {params.work}/tmp
+
+        cp {input.svs} {params.work}/input/{wildcards.slide}.svs
+
+        apptainer exec \
+        --bind {params.work}:/workspace \
+        --bind {params.work}/tmp:/home/user/tmp \
+        {params.sif} \
+        python {params.project}/scripts/save_image_at_spacing.py.py \
+        -i /workspace/input/{wildcards.slide}.svs \
+        -s 0.5 \
+        -o /workspace/converted/  \
+        -t /workspace/tmp/
+        """
+
+# ---------------------------
+# TIFF → MASK (CPU)
+# ---------------------------
+rule mask:
+    input:
+        f"{config['WORK']}/converted/{{slide}}.tif"
+    output:
+        f"{config['WORK']}/masks/{{slide}}_mask.tif"
+    params:
+        sif=config["SIF"],
+        work=config["WORK"],
+        project=config["PROJECT"]
+    threads:
+        config["THREADS"] // 2  # Assuming mask creation is less CPU intensive than conversion
+    resources:
+        slurm_account="stewartp",
+        slurm_partition="notchpeak-freecycle",
+        slurm_extra="--qos=notchpeak-freecycle",
+        runtime=120,      # 2:00:00
+        mem_mb=16000,     # 16G
+        cpus_per_task=4
+    shell:
+        r"""
+        mkdir -p {params.work}/masks
+
+        apptainer exec \
+        --bind {params.work}:/workspace \
+        {params.sif} \
+        python {params.project}/scripts/create_mask_tif.py \
+        --input /workspace/converted/{wildcards.slide}.tif \
+        --output /workspace/masks/{wildcards.slide}_mask.tif
+        """
+
+# ---------------------------
+# MARK CPU COMPLETE
+# ---------------------------
+rule cpu_complete:
+    input:
+        expand(
+            f"{config['WORK']}/masks/{{slide}}_mask.tif",
+            slide=SLIDES
+        )
+    output:
+        touch(f"{config['WORK']}/cpu_complete.done")

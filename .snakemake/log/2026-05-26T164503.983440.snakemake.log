@@ -1,0 +1,53 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: notchpeak2
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count
+---------  -------
+convert          1
+inference        1
+mask             1
+total            3
+
+Select jobs to execute...
+Execute 1 jobs...
+[Tue May 26 16:45:04 2026]
+localrule convert:
+    input: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs, results/logs/C3L-00415-23.validated.txt
+    output: results/converted/C3L-00415-23.tif
+    jobid: 1
+    reason: Missing output files: results/converted/C3L-00415-23.tif
+    wildcards: slide=C3L-00415-23
+    resources: tmpdir=/tmp
+Shell command: 
+        mkdir -p results/converted
+
+        apptainer exec         --bind /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project:/project         /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif         python /project/scripts/save_image_at_spacing.py.py         -i /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs         -s 0.5         -o /project/results/converted/ 
+        
+Terminating processes on user request, this might take some time.
+RuleException:
+CalledProcessError in file "/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/Snakefile", line 69:
+Command 'set -euo pipefail;  
+        mkdir -p results/converted
+
+        apptainer exec         --bind /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project:/project         /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif         python /project/scripts/save_image_at_spacing.py.py         -i /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs         -s 0.5         -o /project/results/converted/' died with <Signals.SIGBUS: 7>.
+[Tue May 26 16:46:47 2026]
+Error in rule convert:
+    message: None
+    jobid: 1
+    input: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs, results/logs/C3L-00415-23.validated.txt
+    output: results/converted/C3L-00415-23.tif
+    shell:
+        
+        mkdir -p results/converted
+
+        apptainer exec         --bind /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project:/project         /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif         python /project/scripts/save_image_at_spacing.py.py         -i /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs         -s 0.5         -o /project/results/converted/ 
+        
+        (command exited with non-zero exit code)
+Complete log(s): /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/log/2026-05-26T164503.983440.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

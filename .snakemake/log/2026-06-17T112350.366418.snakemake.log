@@ -1,0 +1,6 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: notchpeak1
+Building DAG of jobs...
+MissingRuleException:
+No rule to produce /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/post-processed/219136_hooknettls_post_processed.xml--executor (if you use input functions make sure that they don't raise unexpected exceptions).

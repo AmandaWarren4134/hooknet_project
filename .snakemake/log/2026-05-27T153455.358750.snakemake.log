@@ -1,0 +1,88 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: lp233
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job stats:
+job             count
+------------  -------
+all                 1
+convert             1
+cpu_complete        1
+mask                1
+validate            1
+total               5
+
+Select jobs to execute...
+Execute 1 jobs...
+[Wed May 27 15:34:56 2026]
+localrule validate:
+    input: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/logs/C3L-00415-23.validated.txt
+    jobid: 4
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/logs/C3L-00415-23.validated.txt
+    wildcards: slide=C3L-00415-23
+    resources: tmpdir=/scratch/local/u6073678/9148384
+
+[Wed May 27 15:34:56 2026]
+Finished jobid: 4 (Rule: validate)
+1 of 5 steps (20%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed May 27 15:34:56 2026]
+localrule convert:
+    input: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/box_raw/H_E/LSCC/C3L-00415-23.svs, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/logs/C3L-00415-23.validated.txt
+    output: /scratch/general/vast/u6073678/hooknet_tmp/converted/C3L-00415-23.tif
+    jobid: 3
+    reason: Missing output files: /scratch/general/vast/u6073678/hooknet_tmp/converted/C3L-00415-23.tif; Input files updated by another job: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/logs/C3L-00415-23.validated.txt; Code has changed since last execution
+    wildcards: slide=C3L-00415-23
+    threads: 8
+    resources: tmpdir=/scratch/local/u6073678/9148384
+
+[Wed May 27 15:37:58 2026]
+Finished jobid: 3 (Rule: convert)
+2 of 5 steps (40%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed May 27 15:37:58 2026]
+localrule mask:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/C3L-00415-23.tif
+    output: /scratch/general/vast/u6073678/hooknet_tmp/masks/C3L-00415-23_mask.tif
+    jobid: 2
+    reason: Missing output files: /scratch/general/vast/u6073678/hooknet_tmp/masks/C3L-00415-23_mask.tif; Input files updated by another job: /scratch/general/vast/u6073678/hooknet_tmp/converted/C3L-00415-23.tif
+    wildcards: slide=C3L-00415-23
+    threads: 4
+    resources: tmpdir=/scratch/local/u6073678/9148384
+
+[Wed May 27 15:38:14 2026]
+Finished jobid: 2 (Rule: mask)
+3 of 5 steps (60%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed May 27 15:38:14 2026]
+localrule cpu_complete:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/masks/C3L-00415-23_mask.tif
+    output: /scratch/general/vast/u6073678/hooknet_tmp/cpu_complete.done
+    jobid: 1
+    reason: Missing output files: /scratch/general/vast/u6073678/hooknet_tmp/cpu_complete.done; Input files updated by another job: /scratch/general/vast/u6073678/hooknet_tmp/masks/C3L-00415-23_mask.tif
+    resources: tmpdir=/scratch/local/u6073678/9148384
+
+Touching output file /scratch/general/vast/u6073678/hooknet_tmp/cpu_complete.done.
+[Wed May 27 15:38:14 2026]
+Finished jobid: 1 (Rule: cpu_complete)
+4 of 5 steps (80%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Wed May 27 15:38:14 2026]
+localrule all:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/cpu_complete.done
+    jobid: 0
+    reason: Input files updated by another job: /scratch/general/vast/u6073678/hooknet_tmp/cpu_complete.done
+    resources: tmpdir=/scratch/local/u6073678/9148384
+
+[Wed May 27 15:38:14 2026]
+Finished jobid: 0 (Rule: all)
+5 of 5 steps (100%) done
+Complete log(s): /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/log/2026-05-27T153455.358750.snakemake.log

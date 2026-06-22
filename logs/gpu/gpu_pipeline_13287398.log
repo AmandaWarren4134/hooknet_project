@@ -1,0 +1,7 @@
+[1;36m====================================================================[0m
+[1;33mWARNING: Snakemake may ignore --qos=<qos> in this version.[0m
+[1;33mUse: "slurm_extra='--qos=<qos>'"[0m
+[1;36m====================================================================[0m
+SyntaxError in file "/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/Snakefile.gpu", line 9:
+unterminated string literal :
+None

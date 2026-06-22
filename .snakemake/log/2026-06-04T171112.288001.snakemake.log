@@ -1,0 +1,51 @@
+None
+host: notchpeak1
+Building DAG of jobs...
+SLURM run ID: 7ddc35ee-0f7b-4733-befa-590c839416ef
+Using shell: /usr/bin/bash
+Provided remote nodes: 20
+Job stats:
+job               count
+--------------  -------
+all                   1
+inference           128
+xml_to_geojson      132
+total               261
+
+Select jobs to execute...
+Execute 20 jobs...
+[Thu Jun  4 17:11:14 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219199.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219199_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219199_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219199/post-processed/219199_hooknettls_post_processed.xml
+    jobid: 94
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219199/post-processed/219199_hooknettls_post_processed.xml
+    wildcards: slide=219199
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=6511, disk_mib=6210, tmpdir=<TBD>, slurm_account=stewartp, slurm_partition=notchpeak-gpu, slurm_extra=--qos=notchpeak-gpu --account=stewartp --gres=gpu:rtx3090:1 --clusters=notchpeak, runtime=60, cpus_per_task=4
+Shell command: 
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp && mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219199
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219199.tif \
+            hooknettls.default.mask_path=/workspace/masks/219199_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219199/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219199/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219199/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219199_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219199.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219199_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219199/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+WorkflowError:
+SLURM sbatch failed. The error message was sbatch: error: Batch job submission failed: Invalid qos specification
+
+  File "/uufs/chpc.utah.edu/common/home/u6073678/.local/lib/python3.12/site-packages/snakemake_executor_plugin_slurm/__init__.py", line 302, in run_job

@@ -1,0 +1,17 @@
+[1;36m====================================================================[0m
+[1;33mWARNING: Snakemake may ignore --qos=<qos> in this version.[0m
+[1;33mUse: "slurm_extra='--qos=<qos>'"[0m
+[1;36m====================================================================[0m
+
+Lmod is automatically replacing "python/3.11.3" with "snakemake/9.3.3".
+
+[1;36m====================================================================[0m
+[1;33mWARNING: Snakemake may ignore --qos=<qos> in this version.[0m
+[1;33mUse: "slurm_extra='--qos=<qos>'"[0m
+[1;36m====================================================================[0m
+host: notch040
+Building DAG of jobs...
+LockException:
+Error: Directory cannot be locked. Please make sure that no other Snakemake process is trying to create the same files in the following directory:
+/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project
+If you are sure that no other instances of snakemake are running on this directory, the remaining lock was likely caused by a kill signal or a power loss. It can be removed with the --unlock argument.

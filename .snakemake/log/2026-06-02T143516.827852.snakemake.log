@@ -1,0 +1,1667 @@
+None
+host: notch001
+Building DAG of jobs...
+You are running snakemake in a SLURM job context. This is not recommended, as it may lead to unexpected behavior. Please run Snakemake directly on the login node.
+SLURM run ID: 0cfe5a8a-7172-4c03-bf0f-13286bb613a5
+Using shell: /usr/bin/bash
+Provided remote nodes: 20
+Job stats:
+job               count
+--------------  -------
+all                   1
+inference           132
+xml_to_geojson      132
+total               265
+
+Select jobs to execute...
+Execute 20 jobs...
+[Tue Jun  2 14:35:24 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219239.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219239_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219239_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239/post-processed/219239_hooknettls_post_processed.xml
+    jobid: 174
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239/post-processed/219239_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219239
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=4588, disk_mib=4376, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219239.tif \
+            hooknettls.default.mask_path=/workspace/masks/219239_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219239/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219239/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219239_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219239.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219239_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219239/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 174 has been submitted with SLURM jobid 1383039 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219239/1383039.log).
+[Tue Jun  2 14:35:24 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219295.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219295_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219295_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295/post-processed/219295_hooknettls_post_processed.xml
+    jobid: 254
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295/post-processed/219295_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219295
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=4302, disk_mib=4103, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219295.tif \
+            hooknettls.default.mask_path=/workspace/masks/219295_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219295/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219295/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219295_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219295.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219295_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219295/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 254 has been submitted with SLURM jobid 1383040 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219295/1383040.log).
+[Tue Jun  2 14:35:24 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219175.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219175_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219175_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175/post-processed/219175_hooknettls_post_processed.xml
+    jobid: 74
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175/post-processed/219175_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219175
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=4035, disk_mib=3849, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219175.tif \
+            hooknettls.default.mask_path=/workspace/masks/219175_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219175/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219175/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219175_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219175.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219175_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219175/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 74 has been submitted with SLURM jobid 1383041 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219175/1383041.log).
+[Tue Jun  2 14:35:25 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219138.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219138_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219138_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138/post-processed/219138_hooknettls_post_processed.xml
+    jobid: 44
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138/post-processed/219138_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219138
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=5023, disk_mib=4791, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219138.tif \
+            hooknettls.default.mask_path=/workspace/masks/219138_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219138/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219138/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219138_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219138.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219138_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219138/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 44 has been submitted with SLURM jobid 1383042 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219138/1383042.log).
+[Tue Jun  2 14:35:25 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219275.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219275_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219275_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275/post-processed/219275_hooknettls_post_processed.xml
+    jobid: 244
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275/post-processed/219275_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219275
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=4807, disk_mib=4585, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219275.tif \
+            hooknettls.default.mask_path=/workspace/masks/219275_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219275/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219275/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219275_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219275.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219275_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219275/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 244 has been submitted with SLURM jobid 1383043 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219275/1383043.log).
+[Tue Jun  2 14:35:25 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219133.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219133_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219133_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133/post-processed/219133_hooknettls_post_processed.xml
+    jobid: 34
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133/post-processed/219133_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219133
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=6113, disk_mib=5830, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219133.tif \
+            hooknettls.default.mask_path=/workspace/masks/219133_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219133/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219133/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219133_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219133.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219133_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219133/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 34 has been submitted with SLURM jobid 1383044 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219133/1383044.log).
+[Tue Jun  2 14:35:26 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219114.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219114_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219114_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114/post-processed/219114_hooknettls_post_processed.xml
+    jobid: 14
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114/post-processed/219114_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219114
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=4121, disk_mib=3931, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219114.tif \
+            hooknettls.default.mask_path=/workspace/masks/219114_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219114/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219114/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219114_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219114.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219114_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219114/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 14 has been submitted with SLURM jobid 1383045 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219114/1383045.log).
+[Tue Jun  2 14:35:26 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219150.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219150_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219150_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150/post-processed/219150_hooknettls_post_processed.xml
+    jobid: 54
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150/post-processed/219150_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219150
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=4247, disk_mib=4051, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219150.tif \
+            hooknettls.default.mask_path=/workspace/masks/219150_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219150/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219150/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219150_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219150.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219150_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219150/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 54 has been submitted with SLURM jobid 1383046 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219150/1383046.log).
+[Tue Jun  2 14:35:26 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219229.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219229_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219229_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229/post-processed/219229_hooknettls_post_processed.xml
+    jobid: 154
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229/post-processed/219229_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219229
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=4854, disk_mib=4630, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219229.tif \
+            hooknettls.default.mask_path=/workspace/masks/219229_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219229/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219229/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219229_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219229.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219229_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219229/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 154 has been submitted with SLURM jobid 1383047 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219229/1383047.log).
+[Tue Jun  2 14:35:27 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219219.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219219_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219219_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219219/post-processed/219219_hooknettls_post_processed.xml
+    jobid: 134
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219219/post-processed/219219_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219219
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=2724, disk_mib=2598, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219219
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219219.tif \
+            hooknettls.default.mask_path=/workspace/masks/219219_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219219/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219219/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219219/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219219_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219219.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219219_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219219/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 134 has been submitted with SLURM jobid 1383048 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219219/1383048.log).
+[Tue Jun  2 14:35:27 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219199.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219199_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219199_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199/post-processed/219199_hooknettls_post_processed.xml
+    jobid: 94
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199/post-processed/219199_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219199
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=6511, disk_mib=6210, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219199.tif \
+            hooknettls.default.mask_path=/workspace/masks/219199_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219199/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219199/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219199_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219199.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219199_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219199/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 94 has been submitted with SLURM jobid 1383049 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219199/1383049.log).
+[Tue Jun  2 14:35:28 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219136.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219136_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136/post-processed/219136_hooknettls_post_processed.xml
+    jobid: 40
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136/post-processed/219136_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219136
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=4887, disk_mib=4661, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219136.tif \
+            hooknettls.default.mask_path=/workspace/masks/219136_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219136/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219136_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219136.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 40 has been submitted with SLURM jobid 1383050 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219136/1383050.log).
+[Tue Jun  2 14:35:28 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219182.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219182_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219182_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182/post-processed/219182_hooknettls_post_processed.xml
+    jobid: 80
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182/post-processed/219182_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219182
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=3035, disk_mib=2895, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219182.tif \
+            hooknettls.default.mask_path=/workspace/masks/219182_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219182/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219182/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219182_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219182.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219182_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219182/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 80 has been submitted with SLURM jobid 1383051 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219182/1383051.log).
+[Tue Jun  2 14:35:28 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219118.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219118_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219118_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118/post-processed/219118_hooknettls_post_processed.xml
+    jobid: 20
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118/post-processed/219118_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219118
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=3596, disk_mib=3430, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219118.tif \
+            hooknettls.default.mask_path=/workspace/masks/219118_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219118/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219118/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219118_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219118.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219118_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219118/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 20 has been submitted with SLURM jobid 1383052 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219118/1383052.log).
+[Tue Jun  2 14:35:29 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219298.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219298_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219298_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298/post-processed/219298_hooknettls_post_processed.xml
+    jobid: 260
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298/post-processed/219298_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219298
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=2762, disk_mib=2635, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219298.tif \
+            hooknettls.default.mask_path=/workspace/masks/219298_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219298/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219298/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219298_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219298.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219298_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219298/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 260 has been submitted with SLURM jobid 1383053 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219298/1383053.log).
+[Tue Jun  2 14:35:29 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219262.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219262_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219262_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219262/post-processed/219262_hooknettls_post_processed.xml
+    jobid: 220
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219262/post-processed/219262_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219262
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=2237, disk_mib=2134, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219262
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219262.tif \
+            hooknettls.default.mask_path=/workspace/masks/219262_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219262/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219262/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219262/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219262_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219262.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219262_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219262/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 220 has been submitted with SLURM jobid 1383054 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219262/1383054.log).
+[Tue Jun  2 14:35:29 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219154.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219154_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219154_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154/post-processed/219154_hooknettls_post_processed.xml
+    jobid: 60
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154/post-processed/219154_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219154
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=3242, disk_mib=3092, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219154.tif \
+            hooknettls.default.mask_path=/workspace/masks/219154_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219154/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219154/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219154_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219154.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219154_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219154/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 60 has been submitted with SLURM jobid 1383055 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219154/1383055.log).
+[Tue Jun  2 14:35:29 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219202.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219202_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219202_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219202/post-processed/219202_hooknettls_post_processed.xml
+    jobid: 100
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219202/post-processed/219202_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219202
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=2327, disk_mib=2220, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219202
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219202.tif \
+            hooknettls.default.mask_path=/workspace/masks/219202_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219202/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219202/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219202/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219202_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219202.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219202_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219202/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 100 has been submitted with SLURM jobid 1383056 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219202/1383056.log).
+[Tue Jun  2 14:35:30 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219222.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219222_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219222_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222/post-processed/219222_hooknettls_post_processed.xml
+    jobid: 140
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222/post-processed/219222_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219222
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=5927, disk_mib=5653, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219222.tif \
+            hooknettls.default.mask_path=/workspace/masks/219222_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219222/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219222/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219222_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219222.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219222_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219222/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 140 has been submitted with SLURM jobid 1383057 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219222/1383057.log).
+[Tue Jun  2 14:35:30 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219242.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219242_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219242_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219242/post-processed/219242_hooknettls_post_processed.xml
+    jobid: 180
+    reason: Missing output files: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219242/post-processed/219242_hooknettls_post_processed.xml
+    wildcards: project=/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project, slide=219242
+    threads: 8
+    resources: mem_mb=32000, mem_mib=30518, disk_mb=6680, disk_mib=6371, tmpdir=<TBD>, slurm_account=rai, slurm_partition=rai-gpu-grn, slurm_extra=--qos=rai-gpu-grn --gres=gpu:1 --cluster=granite, runtime=60, cpus_per_task=4
+Shell command: 
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219242
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219242.tif \
+            hooknettls.default.mask_path=/workspace/masks/219242_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219242/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219242/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219242/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219242_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219242.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219242_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219242/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+Job 180 has been submitted with SLURM jobid 1383058 (log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219242/1383058.log).
+Select jobs to execute...
+[Tue Jun  2 14:41:50 2026]
+Error in rule inference:
+    message: SLURM-job '1383041' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 74
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219175.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219175_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219175_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175/post-processed/219175_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219175/1383041.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219175.tif \
+            hooknettls.default.mask_path=/workspace/masks/219175_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219175/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219175/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219175_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219175.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219175_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219175/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383041
+[Tue Jun  2 14:41:50 2026]
+Error in rule inference:
+    message: SLURM-job '1383045' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 14
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219114.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219114_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219114_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114/post-processed/219114_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219114/1383045.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219114.tif \
+            hooknettls.default.mask_path=/workspace/masks/219114_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219114/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219114/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219114_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219114.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219114_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219114/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383045
+[Tue Jun  2 14:41:50 2026]
+Finished jobid: 134 (Rule: inference)
+1 of 265 steps (0.4%) done
+[Tue Jun  2 14:42:30 2026]
+Error in rule inference:
+    message: SLURM-job '1383042' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 44
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219138.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219138_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219138_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138/post-processed/219138_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219138/1383042.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219138.tif \
+            hooknettls.default.mask_path=/workspace/masks/219138_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219138/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219138/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219138_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219138.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219138_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219138/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383042
+[Tue Jun  2 14:42:30 2026]
+Error in rule inference:
+    message: SLURM-job '1383043' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 244
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219275.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219275_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219275_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275/post-processed/219275_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219275/1383043.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219275.tif \
+            hooknettls.default.mask_path=/workspace/masks/219275_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219275/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219275/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219275_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219275.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219275_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219275/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383043
+[Tue Jun  2 14:42:30 2026]
+Error in rule inference:
+    message: SLURM-job '1383046' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 54
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219150.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219150_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219150_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150/post-processed/219150_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219150/1383046.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219150.tif \
+            hooknettls.default.mask_path=/workspace/masks/219150_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219150/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219150/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219150_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219150.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219150_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219150/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383046
+[Tue Jun  2 14:42:30 2026]
+Error in rule inference:
+    message: SLURM-job '1383047' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 154
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219229.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219229_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219229_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229/post-processed/219229_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219229/1383047.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219229.tif \
+            hooknettls.default.mask_path=/workspace/masks/219229_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219229/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219229/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219229_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219229.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219229_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219229/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383047
+[Tue Jun  2 14:43:20 2026]
+Error in rule inference:
+    message: SLURM-job '1383040' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 254
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219295.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219295_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219295_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295/post-processed/219295_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219295/1383040.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219295.tif \
+            hooknettls.default.mask_path=/workspace/masks/219295_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219295/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219295/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219295_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219295.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219295_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219295/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383040
+[Tue Jun  2 14:44:20 2026]
+Error in rule inference:
+    message: SLURM-job '1383039' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 174
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219239.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219239_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219239_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239/post-processed/219239_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219239/1383039.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219239.tif \
+            hooknettls.default.mask_path=/workspace/masks/219239_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219239/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219239/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219239_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219239.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219239_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219239/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383039
+[Tue Jun  2 14:44:20 2026]
+Error in rule inference:
+    message: SLURM-job '1383044' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 34
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219133.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219133_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219133_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133/post-processed/219133_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219133/1383044.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219133.tif \
+            hooknettls.default.mask_path=/workspace/masks/219133_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219133/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219133/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219133_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219133.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219133_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219133/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383044
+[Tue Jun  2 14:46:51 2026]
+Error in rule inference:
+    message: SLURM-job '1383049' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 94
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219199.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219199_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219199_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199/post-processed/219199_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219199/1383049.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219199.tif \
+            hooknettls.default.mask_path=/workspace/masks/219199_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219199/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219199/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219199_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219199.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219199_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219199/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383049
+[Tue Jun  2 14:48:21 2026]
+Error in rule inference:
+    message: SLURM-job '1383051' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 80
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219182.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219182_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219182_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182/post-processed/219182_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219182/1383051.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219182.tif \
+            hooknettls.default.mask_path=/workspace/masks/219182_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219182/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219182/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219182_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219182.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219182_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219182/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383051
+[Tue Jun  2 14:48:21 2026]
+Error in rule inference:
+    message: SLURM-job '1383052' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 20
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219118.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219118_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219118_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118/post-processed/219118_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219118/1383052.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219118.tif \
+            hooknettls.default.mask_path=/workspace/masks/219118_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219118/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219118/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219118_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219118.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219118_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219118/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383052
+[Tue Jun  2 14:48:21 2026]
+Error in rule inference:
+    message: SLURM-job '1383053' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 260
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219298.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219298_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219298_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298/post-processed/219298_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219298/1383053.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219298.tif \
+            hooknettls.default.mask_path=/workspace/masks/219298_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219298/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219298/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219298_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219298.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219298_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219298/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383053
+[Tue Jun  2 14:48:21 2026]
+Error in rule inference:
+    message: SLURM-job '1383055' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 60
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219154.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219154_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219154_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154/post-processed/219154_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219154/1383055.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219154.tif \
+            hooknettls.default.mask_path=/workspace/masks/219154_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219154/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219154/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219154_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219154.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219154_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219154/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383055
+[Tue Jun  2 14:48:21 2026]
+Finished jobid: 220 (Rule: inference)
+2 of 265 steps (1%) done
+[Tue Jun  2 14:48:21 2026]
+Finished jobid: 100 (Rule: inference)
+3 of 265 steps (1%) done
+[Tue Jun  2 14:49:01 2026]
+Error in rule inference:
+    message: SLURM-job '1383057' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 140
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219222.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219222_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219222_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222/post-processed/219222_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219222/1383057.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219222.tif \
+            hooknettls.default.mask_path=/workspace/masks/219222_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219222/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219222/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219222_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219222.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219222_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219222/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383057
+[Tue Jun  2 14:53:22 2026]
+Error in rule inference:
+    message: SLURM-job '1383050' failed, SLURM status is: 'FAILED'. For further error details see the cluster/cloud log and the log files of the involved rule(s).
+    jobid: 40
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219136.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219136_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136/post-processed/219136_hooknettls_post_processed.xml
+    log: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/slurm_logs/rule_inference/_uufs_chpc.utah.edu_common_home_u6073678_hooknet_project_219136/1383050.log (check log file(s) for error details)
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219136.tif \
+            hooknettls.default.mask_path=/workspace/masks/219136_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219136/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219136_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219136.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+    external_jobid: 1383050
+[Tue Jun  2 14:58:23 2026]
+Finished jobid: 180 (Rule: inference)
+4 of 265 steps (2%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 54
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219150.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219150_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219150_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150/post-processed/219150_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219150.tif \
+            hooknettls.default.mask_path=/workspace/masks/219150_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219150/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219150/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219150/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219150_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219150.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219150_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219150/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 14
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219114.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219114_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219114_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114/post-processed/219114_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219114.tif \
+            hooknettls.default.mask_path=/workspace/masks/219114_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219114/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219114/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219114/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219114_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219114.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219114_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219114/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 74
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219175.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219175_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219175_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175/post-processed/219175_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219175.tif \
+            hooknettls.default.mask_path=/workspace/masks/219175_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219175/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219175/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219175/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219175_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219175.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219175_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219175/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 244
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219275.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219275_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219275_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275/post-processed/219275_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219275.tif \
+            hooknettls.default.mask_path=/workspace/masks/219275_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219275/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219275/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219275/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219275_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219275.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219275_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219275/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 44
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219138.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219138_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219138_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138/post-processed/219138_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219138.tif \
+            hooknettls.default.mask_path=/workspace/masks/219138_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219138/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219138/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219138/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219138_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219138.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219138_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219138/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 154
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219229.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219229_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219229_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229/post-processed/219229_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219229.tif \
+            hooknettls.default.mask_path=/workspace/masks/219229_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219229/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219229/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219229/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219229_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219229.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219229_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219229/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 254
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219295.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219295_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219295_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295/post-processed/219295_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219295.tif \
+            hooknettls.default.mask_path=/workspace/masks/219295_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219295/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219295/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219295/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219295_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219295.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219295_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219295/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 174
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219239.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219239_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219239_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239/post-processed/219239_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219239.tif \
+            hooknettls.default.mask_path=/workspace/masks/219239_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219239/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219239/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219239/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219239_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219239.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219239_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219239/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 34
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219133.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219133_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219133_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133/post-processed/219133_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219133.tif \
+            hooknettls.default.mask_path=/workspace/masks/219133_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219133/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219133/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219133/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219133_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219133.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219133_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219133/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 94
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219199.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219199_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219199_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199/post-processed/219199_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219199.tif \
+            hooknettls.default.mask_path=/workspace/masks/219199_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219199/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219199/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219199/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219199_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219199.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219199_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219199/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 80
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219182.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219182_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219182_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182/post-processed/219182_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219182.tif \
+            hooknettls.default.mask_path=/workspace/masks/219182_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219182/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219182/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219182/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219182_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219182.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219182_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219182/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 40
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219136.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219136_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136/post-processed/219136_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219136.tif \
+            hooknettls.default.mask_path=/workspace/masks/219136_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219136/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219136/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219136_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219136.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219136/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 20
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219118.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219118_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219118_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118/post-processed/219118_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219118.tif \
+            hooknettls.default.mask_path=/workspace/masks/219118_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219118/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219118/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219118/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219118_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219118.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219118_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219118/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 260
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219298.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219298_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219298_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298/post-processed/219298_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219298.tif \
+            hooknettls.default.mask_path=/workspace/masks/219298_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219298/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219298/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219298/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219298_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219298.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219298_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219298/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 60
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219154.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219154_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219154_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154/post-processed/219154_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219154.tif \
+            hooknettls.default.mask_path=/workspace/masks/219154_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219154/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219154/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219154/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219154_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219154.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219154_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219154/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+[Tue Jun  2 14:59:03 2026]
+Error in rule inference:
+    message: None
+    jobid: 140
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219222.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219222_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219222_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222/post-processed/219222_hooknettls_post_processed.xml
+    shell:
+        
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219222.tif \
+            hooknettls.default.mask_path=/workspace/masks/219222_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219222/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219222/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/219222/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219222_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219222.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219222_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219222/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/*
+        
+        (command exited with non-zero exit code)
+Complete log(s): /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/.snakemake/log/2026-06-02T143516.827852.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

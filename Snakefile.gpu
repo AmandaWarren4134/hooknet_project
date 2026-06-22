@@ -1,0 +1,103 @@
+include: "common.smk"
+
+FOLDER = config["FOLDER"]
+wildcard_constraints:
+    folder=FOLDER,
+    project=config["PROJECT"].replace("/", "[^/]*")
+
+onstart:
+    shell("mkdir -p {config[LOGS]}")
+    
+# ------------------------
+# DEFAULT TARGET
+# ------------------------
+
+rule all:
+    input:
+        f"{config['WORK']}/cpu_complete.done",          
+        expand(
+            "{project}/results/geojson/{slide}.geojson",
+            project=config["PROJECT"],
+            slide=SLIDES
+        )
+
+# ---------------------------
+# HOOKNET INFERENCE (GPU)
+# ---------------------------
+rule inference:
+    input:
+        tif=lambda wildcards: f"{config['WORK']}/converted/{wildcards.slide}.tif",
+        mask=lambda wildcards: f"{config['WORK']}/masks/{wildcards.slide}_mask.tif"
+    output:
+        done=f"{config['PROJECT']}/results/inference/done/{{slide}}_hooknet.done",
+        xml=f"{config['PROJECT']}/results/inference/{FOLDER}/{{slide}}/post-processed/{{slide}}_hooknettls_post_processed.xml"
+    params:
+        sif=config["SIF"],
+        work=config["WORK"],
+        project=config["PROJECT"],
+        folder=FOLDER
+    threads:
+        config["THREADS"]
+    log:
+        f"{config['LOGS']}/{{slide}}_hooknet.log"   
+    resources:
+        slurm_partition="notchpeak-gpu",
+        slurm_extra="--qos=notchpeak-gpu --account=notchpeak-gpu --gres=gpu:1 --clusters=notchpeak",
+        runtime=150,
+        mem_mb=16000,
+        cpus_per_task=4
+    shell:
+        r"""
+        set -euo pipefail
+        mkdir -p {params.work}/tmp/{wildcards.slide}
+        mkdir -p {params.work}/output/images/{wildcards.slide}
+        rm -rf {params.work}/output/images/{wildcards.slide}
+        mkdir -p {params.work}/output/images/{wildcards.slide}
+        mkdir -p {params.project}/results/inference/{params.folder}/{wildcards.slide}
+        mkdir -p {params.project}/results/inference/done
+        /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec --nv \
+            --bind {params.work}:/workspace \
+            --bind {params.work}/tmp/{wildcards.slide}:/home/user/tmp \
+            {params.sif} \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/{wildcards.slide}.tif \
+            hooknettls.default.mask_path=/workspace/masks/{wildcards.slide}_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/{wildcards.slide}/ \
+            > {log} 2>&1
+        cp -r {params.work}/output/images/{wildcards.slide}/. \
+              {params.project}/results/inference/{params.folder}/{wildcards.slide}/
+        touch {output.done}
+        rm -f  {params.work}/input/{wildcards.slide}.svs
+        rm -f  {params.work}/masks/{wildcards.slide}_mask.tif
+        rm -rf {params.work}/output/images/{wildcards.slide}/
+        rm -rf {params.work}/tmp/{wildcards.slide}
+        """
+
+# ---------------------------
+# CONVERT XML to QUPATH GEOJSON
+# ---------------------------
+rule xml_to_geojson:
+    input:
+        xml=f"{config['PROJECT']}/results/inference/{FOLDER}/{{slide}}/post-processed/{{slide}}_hooknettls_post_processed.xml"
+    output:
+        geojson=f"{config['PROJECT']}/results/geojson/{{slide}}.geojson"
+    params:
+        project=config["PROJECT"]
+    log: 
+        f"{config['LOGS']}/{{slide}}_xml_to_geojson.log"
+    resources:
+        slurm_account="stewartp",
+        slurm_partition="notchpeak-freecycle",
+        slurm_extra="--qos=notchpeak-freecycle --clusters=notchpeak",
+        runtime=30,
+        mem_mb=4000,
+        cpus_per_task=1
+    shell:
+        """
+        mkdir -p {params.project}/results/geojson
+        python scripts/asap_to_qupath_geojson.py \
+            {input.xml} \
+            {output.geojson}
+        > {log} 2>&1
+        """

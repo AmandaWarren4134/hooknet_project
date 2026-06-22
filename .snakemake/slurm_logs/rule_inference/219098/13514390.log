@@ -1,0 +1,120 @@
+host: notch293
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Provided resources: mem_mb=16000, mem_mib=15259, disk_mb=5647, disk_mib=5386, cpus_per_task=4
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 16 14:36:40 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219098.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219098_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219098_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219098/post-processed/219098_hooknettls_post_processed.xml
+    log: /scratch/general/vast/u6073678/hooknet_logs/219098_hooknet.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: slide=219098
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=5647, disk_mib=5386, tmpdir=<TBD>, slurm_account=stewartp, slurm_partition=notchpeak-gpu, slurm_extra=--qos=notchpeak-gpu --account=notchpeak-gpu --gres=gpu:1 --clusters=notchpeak, runtime=40, cpus_per_task=4
+Shell command: 
+        set -euo pipefail
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp/219098
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images/219098
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219098
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp/219098:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219098.tif \
+            hooknettls.default.mask_path=/workspace/masks/219098_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219098/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219098/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219098/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219098_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219098.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219098_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219098/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/219098
+
+        > /scratch/general/vast/u6073678/hooknet_logs/219098_hooknet.log 2>&1
+        
+host: notch293
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=16000, mem_mib=15259, disk_mb=5647, disk_mib=5386, cpus_per_task=4
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 16 14:36:45 2026]
+localrule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219098.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219098_mask.tif
+    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219098_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219098/post-processed/219098_hooknettls_post_processed.xml
+    log: /scratch/general/vast/u6073678/hooknet_logs/219098_hooknet.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: slide=219098
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=5647, disk_mib=5386, tmpdir=/scratch/local/u6073678/13514390, slurm_account=stewartp, slurm_partition=notchpeak-gpu, slurm_extra=--qos=notchpeak-gpu --account=notchpeak-gpu --gres=gpu:1 --clusters=notchpeak, runtime=40, cpus_per_task=4
+Shell command: 
+        set -euo pipefail
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/tmp/219098
+        mkdir -p /scratch/general/vast/u6073678/hooknet_tmp/output/images/219098
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219098
+        mkdir -p /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done
+        /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec --nv \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp:/workspace \
+            --bind /scratch/general/vast/u6073678/hooknet_tmp/tmp/219098:/home/user/tmp \
+            /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/containers/hooknet_tls.sif \
+            python -m hooknettls \
+            hooknettls.default.image_path=/workspace/converted/219098.tif \
+            hooknettls.default.mask_path=/workspace/masks/219098_mask.tif \
+            hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
+            hooknettls.default.output_folder=/workspace/output/images/219098/
+        cp -r /scratch/general/vast/u6073678/hooknet_tmp/output/images/219098/. \
+              /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219098/
+        touch /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/done/219098_hooknet.done
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/input/219098.svs
+        rm -f  /scratch/general/vast/u6073678/hooknet_tmp/masks/219098_mask.tif
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/output/images/219098/
+        rm -rf /scratch/general/vast/u6073678/hooknet_tmp/tmp/219098
+
+        > /scratch/general/vast/u6073678/hooknet_logs/219098_hooknet.log 2>&1
+        
+INFO:    gocryptfs not found, will not be able to use gocryptfs
+2026-06-16 14:37:21.619704: E tensorflow/stream_executor/cuda/cuda_driver.cc:271] failed call to cuInit: CUDA_ERROR_UNKNOWN: unknown error
+2026-06-16 14:37:21.619750: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: notch293
+2026-06-16 14:37:21.619759: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: notch293
+2026-06-16 14:37:21.620007: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:200] libcuda reported version is: INVALID_ARGUMENT: expected %d.%d, %d.%d.%d, or %d.%d.%d.%d form for driver version; got "1"
+2026-06-16 14:37:21.620060: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:204] kernel reported version is: 580.159.4
+2026-06-16 14:37:21.621681: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+loading weights... /home/user/pathology-hooknet-tls/weights/lung_weights.h5
+Create output folder
+Creating lock file: /workspace/output/images/219098/219098hooknettls.lock
+Run inference
+Init writers...
+write: /home/user/tmp/219098_hooknettls.tif
+Creating: /home/user/tmp/219098_hooknettls.tif....
+Spacing: 0.5039991644638852
+Dimensions: (70103, 46921)
+Tile_shape: (1024, 1024)
+write: /home/user/tmp/219098_hooknettls_heat1.tif
+Creating: /home/user/tmp/219098_hooknettls_heat1.tif....
+Spacing: 0.5039991644638852
+Dimensions: (70103, 46921)
+Tile_shape: (1024, 1024)
+write: /home/user/tmp/219098_hooknettls_heat2.tif
+Creating: /home/user/tmp/219098_hooknettls_heat2.tif....
+Spacing: 0.5039991644638852
+Dimensions: (70103, 46921)
+Tile_shape: (1024, 1024)
+Applying...
+  0%|          | 0/1454 [00:00<?, ?it/s]  0%|          | 1/1454 [00:06<2:41:56,  6.69s/it]  0%|          | 2/1454 [00:12<2:25:20,  6.01s/it]  0%|          | 3/1454 [00:17<2:20:05,  5.79s/it]  0%|          | 4/1454 [00:23<2:17:04,  5.67s/it]  0%|          | 5/1454 [00:28<2:15:03,  5.59s/it]  0%|          | 6/1454 [00:34<2:14:58,  5.59s/it]  0%|          | 7/1454 [00:39<2:14:18,  5.57s/it]  1%|          | 8/1454 [00:45<2:14:12,  5.57s/it]  1%|          | 9/1454 [00:50<2:14:22,  5.58s/it]  1%|          | 10/1454 [00:56<2:13:38,  5.55s/it]  1%|          | 11/1454 [01:01<2:12:52,  5.53s/it]  1%|          | 12/1454 [01:07<2:13:17,  5.55s/it]  1%|          | 13/1454 [01:13<2:12:53,  5.53s/it]  1%|          | 14/1454 [01:18<2:13:27,  5.56s/it]  1%|          | 15/1454 [01:24<2:13:49,  5.58s/it]  1%|          | 16/1454 [01:29<2:13:16,  5.56s/it]  1%|          | 17/1454 [01:35<2:13:23,  5.57s/it]  1%|          | 18/1454 [01:41<2:13:36,  5.58s/it]  1%|▏         | 19/1454 [01:46<2:12:47,  5.55s/it]  1%|▏         | 20/1454 [01:51<2:12:02,  5.52s/it]  1%|▏         | 21/1454 [01:57<2:12:11,  5.53s/it]  2%|▏         | 22/1454 [02:02<2:11:42,  5.52s/it]  2%|▏         | 23/1454 [02:08<2:11:50,  5.53s/it]  2%|▏         | 24/1454 [02:14<2:11:46,  5.53s/it]  2%|▏         | 25/1454 [02:19<2:12:42,  5.57s/it]  2%|▏         | 26/1454 [02:25<2:11:50,  5.54s/it]  2%|▏         | 27/1454 [02:30<2:10:49,  5.50s/it]  2%|▏         | 28/1454 [02:35<2:09:15,  5.44s/it]  2%|▏         | 29/1454 [02:41<2:11:10,  5.52s/it]  2%|▏         | 30/1454 [02:47<2:14:06,  5.65s/it]  2%|▏         | 31/1454 [02:53<2:13:10,  5.61s/it]  2%|▏         | 32/1454 [02:58<2:12:43,  5.60s/it]  2%|▏         | 33/1454 [03:04<2:12:18,  5.59s/it]  2%|▏         | 34/1454 [03:09<2:13:33,  5.64s/it]  2%|▏         | 35/1454 [03:15<2:13:46,  5.66s/it]  2%|▏         | 36/1454 [03:21<2:13:04,  5.63s/it]  3%|▎         | 37/1454 [03:26<2:12:18,  5.60s/it]  3%|▎         | 38/1454 [03:32<2:11:06,  5.56s/it]  3%|▎         | 39/1454 [03:37<2:11:31,  5.58s/it]  3%|▎         | 40/1454 [03:43<2:11:37,  5.58s/it]  3%|▎         | 41/1454 [03:49<2:11:28,  5.58s/it]  3%|▎         | 42/1454 [03:54<2:11:55,  5.61s/it]  3%|▎         | 43/1454 [04:00<2:12:26,  5.63s/it]  3%|▎         | 44/1454 [04:06<2:13:34,  5.68s/it]  3%|▎         | 45/1454 [04:11<2:13:47,  5.70s/it]  3%|▎         | 46/1454 [04:17<2:13:24,  5.68s/it]  3%|▎         | 47/1454 [04:23<2:11:43,  5.62s/it]  3%|▎         | 48/1454 [04:28<2:11:03,  5.59s/it]  3%|▎         | 49/1454 [04:34<2:11:41,  5.62s/it]  3%|▎         | 50/1454 [04:40<2:12:46,  5.67s/it]  4%|▎         | 51/1454 [04:45<2:12:21,  5.66s/it]  4%|▎         | 52/1454 [04:51<2:11:37,  5.63s/it]  4%|▎         | 53/1454 [04:56<2:11:00,  5.61s/it]  4%|▎         | 54/1454 [05:02<2:10:35,  5.60s/it]  4%|▍         | 55/1454 [05:08<2:10:49,  5.61s/it]  4%|▍         | 56/1454 [05:13<2:09:58,  5.58s/it]  4%|▍         | 57/1454 [05:19<2:09:38,  5.57s/it]  4%|▍         | 58/1454 [05:24<2:09:35,  5.57s/it]  4%|▍         | 59/1454 [05:30<2:09:33,  5.57s/it]  4%|▍         | 60/1454 [05:35<2:08:31,  5.53s/it]  4%|▍         | 61/1454 [05:41<2:08:44,  5.55s/it]  4%|▍         | 62/1454 [05:46<2:07:51,  5.51s/it]  4%|▍         | 63/1454 [05:52<2:07:55,  5.52s/it]  4%|▍         | 64/1454 [05:57<2:07:58,  5.52s/it]  4%|▍         | 65/1454 [06:03<2:08:03,  5.53s/it]  5%|▍         | 66/1454 [06:09<2:09:58,  5.62s/it]  5%|▍         | 67/1454 [06:14<2:10:14,  5.63s/it]  5%|▍         | 68/1454 [06:20<2:08:34,  5.57s/it]  5%|▍         | 69/1454 [06:25<2:08:35,  5.57s/it]  5%|▍         | 70/1454 [06:31<2:08:39,  5.58s/it]  5%|▍         | 71/1454 [06:36<2:08:25,  5.57s/it]  5%|▍         | 72/1454 [06:42<2:10:14,  5.65s/it]  5%|▌         | 73/1454 [06:48<2:10:14,  5.66s/it]  5%|▌         | 74/1454 [06:54<2:09:42,  5.64s/it]  5%|▌         | 75/1454 [06:59<2:08:23,  5.59s/it]  5%|▌         | 76/1454 [07:05<2:08:24,  5.59s/it]  5%|▌         | 77/1454 [07:10<2:09:17,  5.63s/it]  5%|▌         | 78/1454 [07:16<2:08:54,  5.62s/it]  5%|▌         | 79/1454 [07:22<2:08:33,  5.61s/it]  6%|▌         | 80/1454 [07:27<2:08:44,  5.62s/it]  6%|▌         | 81/1454 [07:33<2:07:51,  5.59s/it]  6%|▌         | 82/1454 [07:38<2:07:49,  5.59s/it]  6%|▌         | 83/1454 [07:44<2:07:17,  5.57s/it]  6%|▌         | 84/1454 [07:49<2:07:07,  5.57s/it]  6%|▌         | 85/1454 [07:55<2:07:05,  5.57s/it]  6%|▌         | 86/1454 [08:00<2:06:13,  5.54s/it]  6%|▌         | 87/1454 [08:06<2:07:23,  5.59s/it]  6%|▌         | 88/1454 [08:12<2:06:01,  5.54s/it]  6%|▌         | 89/1454 [08:17<2:06:17,  5.55s/it]  6%|▌         | 90/1454 [08:23<2:05:35,  5.52s/it]  6%|▋         | 91/1454 [08:28<2:05:30,  5.52s/it]  6%|▋         | 92/1454 [08:34<2:05:48,  5.54s/it]  6%|▋         | 93/1454 [08:39<2:06:23,  5.57s/it]  6%|▋         | 94/1454 [08:45<2:05:43,  5.55s/it]  7%|▋         | 95/1454 [08:50<2:05:17,  5.53s/it]  7%|▋         | 96/1454 [08:56<2:04:30,  5.50s/it]  7%|▋         | 97/1454 [09:01<2:04:59,  5.53s/it]  7%|▋         | 98/1454 [09:07<2:04:57,  5.53s/it]  7%|▋         | 99/1454 [09:12<2:05:22,  5.55s/it]  7%|▋         | 100/1454 [09:18<2:05:52,  5.58s/it]  7%|▋         | 101/1454 [09:24<2:05:52,  5.58s/it]  7%|▋         | 102/1454 [09:29<2:05:09,  5.55s/it]  7%|▋         | 103/1454 [09:35<2:05:23,  5.57s/it]  7%|▋         | 104/1454 [09:40<2:05:36,  5.58s/it]  7%|▋         | 105/1454 [09:46<2:06:03,  5.61s/it]  7%|▋         | 106/1454 [09:52<2:05:57,  5.61s/it]  7%|▋         | 107/1454 [09:57<2:05:07,  5.57s/it]  7%|▋         | 108/1454 [10:03<2:05:35,  5.60s/it]  7%|▋         | 109/1454 [10:08<2:05:33,  5.60s/it]  8%|▊         | 110/1454 [10:14<2:05:27,  5.60s/it]  8%|▊         | 111/1454 [10:20<2:05:22,  5.60s/it]  8%|▊         | 112/1454 [10:25<2:05:39,  5.62s/it]  8%|▊         | 113/1454 [10:31<2:05:22,  5.61s/it]  8%|▊         | 114/1454 [10:37<2:07:01,  5.69s/it]  8%|▊         | 115/1454 [10:42<2:07:15,  5.70s/it]  8%|▊         | 116/1454 [10:48<2:07:18,  5.71s/it]  8%|▊         | 117/1454 [10:54<2:06:39,  5.68s/it]  8%|▊         | 118/1454 [10:59<2:05:49,  5.65s/it]  8%|▊         | 119/1454 [11:05<2:06:44,  5.70s/it]  8%|▊         | 120/1454 [11:11<2:06:42,  5.70s/it]  8%|▊         | 121/1454 [11:17<2:06:05,  5.68s/it]  8%|▊         | 122/1454 [11:22<2:05:26,  5.65s/it]  8%|▊         | 123/1454 [11:28<2:04:31,  5.61s/it]  9%|▊         | 124/1454 [11:33<2:04:23,  5.61s/it]  9%|▊         | 125/1454 [11:39<2:04:18,  5.61s/it]  9%|▊         | 126/1454 [11:44<2:03:49,  5.59s/it]  9%|▊         | 127/1454 [11:50<2:04:06,  5.61s/it]  9%|▉         | 128/1454 [11:56<2:04:12,  5.62s/it]  9%|▉         | 129/1454 [12:01<2:05:03,  5.66s/it]  9%|▉         | 130/1454 [12:07<2:03:43,  5.61s/it]  9%|▉         | 131/1454 [12:12<2:03:01,  5.58s/it]  9%|▉         | 132/1454 [12:18<2:03:02,  5.58s/it]  9%|▉         | 133/1454 [12:24<2:04:13,  5.64s/it]  9%|▉         | 134/1454 [12:30<2:04:37,  5.66s/it]  9%|▉         | 135/1454 [12:35<2:04:01,  5.64s/it]  9%|▉         | 136/1454 [12:41<2:02:53,  5.59s/it]  9%|▉         | 137/1454 [12:46<2:02:01,  5.56s/it]  9%|▉         | 138/1454 [12:52<2:02:00,  5.56s/it] 10%|▉         | 139/1454 [12:57<2:02:22,  5.58s/it] 10%|▉         | 140/1454 [13:03<2:02:08,  5.58s/it] 10%|▉         | 141/1454 [13:08<2:02:10,  5.58s/it] 10%|▉         | 142/1454 [13:14<2:02:09,  5.59s/it] 10%|▉         | 143/1454 [13:20<2:03:05,  5.63s/it] 10%|▉         | 144/1454 [13:25<2:03:07,  5.64s/it] 10%|▉         | 145/1454 [13:31<2:01:36,  5.57s/it] 10%|█         | 146/1454 [13:36<2:00:50,  5.54s/it] 10%|█         | 147/1454 [13:42<2:00:50,  5.55s/it] 10%|█         | 148/1454 [13:47<2:00:47,  5.55s/it] 10%|█         | 149/1454 [13:53<2:01:01,  5.56s/it] 10%|█         | 150/1454 [13:59<2:00:22,  5.54s/it] 10%|█         | 151/1454 [14:04<2:00:47, srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+ 5.56s/it] 10%|█         | 152/1454 [14:10<2:00:58,  5.57s/it] 11%|█         | 153/1454 [14:15<2:00:34,  5.56s/it] 11%|█         | 154/1454 [14:21<2:00:45,  5.57s/it] 11%|█         | 155/1454 [14:26<2:00:36,  5.57s/it] 11%|█         | 156/1454 [14:32<2:00:59,  5.59s/it] 11%|█         | 157/1454 [14:38<2:01:48,  5.63s/it] 11%|█         | 158/1454 [14:44<2:02:43,  5.68s/it] 11%|█         | 159/1454 [14:49<2:02:06,  5.66s/it] 11%|█         | 160/1454 [14:55<2:02:24,  5.68s/it] 11%|█         | 161/1454 [15:01<2:02:11,  5.67s/it] 11%|█         | 162/1454 [15:06<2:02:12,  5.68s/it] 11%|█         | 163/1454 [15:12<2:00:41,  5.61s/it] 11%|█▏        | 164/1454 [15:17<2:00:52,  5.62s/it] 11%|█▏        | 165/1454 [15:23<2:00:54,  5.63s/it] 11%|█▏        | 166/1454 [15:29<2:01:03,  5.64s/it] 11%|█▏        | 167/1454 [15:34<2:00:42,  5.63s/it]slurmstepd: error: *** STEP 13514390.0 ON notch293 CANCELLED AT 2026-06-16T14:53:04 ***
+Will exit after finishing currently running jobs (scheduler).
+slurmstepd: error: *** JOB 13514390 ON notch293 CANCELLED AT 2026-06-16T14:53:04 ***

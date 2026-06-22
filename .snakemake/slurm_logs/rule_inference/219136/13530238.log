@@ -1,0 +1,44 @@
+host: notch293
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Provided resources: mem_mb=16000, mem_mib=15259, disk_mb=4887, disk_mib=4661, cpus_per_task=4
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Jun 17 11:26:49 2026]
+rule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219136.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+    output: /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done/219136_hooknet.done, /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/post-processed/219136_hooknettls_post_processed.xml
+    log: /scratch/general/vast/u6073678/hooknet_logs/219136_hooknet.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: slide=219136
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=4887, disk_mib=4661, tmpdir=<TBD>, slurm_account=stewartp, slurm_partition=notchpeak-gpu, slurm_extra=--qos=notchpeak-gpu --account=notchpeak-gpu --gres=gpu:1 --clusters=notchpeak, runtime=40, cpus_per_task=4
+
+host: notch293
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=16000, mem_mib=15259, disk_mb=4887, disk_mib=4661, cpus_per_task=4
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Jun 17 11:26:52 2026]
+localrule inference:
+    input: /scratch/general/vast/u6073678/hooknet_tmp/converted/219136.tif, /scratch/general/vast/u6073678/hooknet_tmp/masks/219136_mask.tif
+    output: /scratch/rai/vast1/stewartp/hooknet_project/results/inference/done/219136_hooknet.done, /scratch/rai/vast1/stewartp/hooknet_project/results/inference/H_E/219136/post-processed/219136_hooknettls_post_processed.xml
+    log: /scratch/general/vast/u6073678/hooknet_logs/219136_hooknet.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: slide=219136
+    threads: 8
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=4887, disk_mib=4661, tmpdir=/scratch/local/u6073678/13530238, slurm_account=stewartp, slurm_partition=notchpeak-gpu, slurm_extra=--qos=notchpeak-gpu --account=notchpeak-gpu --gres=gpu:1 --clusters=notchpeak, runtime=40, cpus_per_task=4
+
+slurmstepd: error: *** STEP 13530238.0 ON notch293 CANCELLED AT 2026-06-17T12:06:59 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 13530238 ON notch293 CANCELLED AT 2026-06-17T12:06:59 DUE TO TIME LIMIT ***
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+Will exit after finishing currently running jobs (scheduler).
+Will exit after finishing currently running jobs (scheduler).
