@@ -1,9 +1,0 @@
-None
-host: notch153
-Building DAG of jobs...
-MissingInputException in rule inference in file "/uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/Snakefile.gpu", line 22:
-Missing input files for rule inference:
-    output: /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/done/219202_hooknet.done, /uufs/chpc.utah.edu/common/home/u6073678/hooknet_project/results/inference/H_E/219202/post-processed/219202_hooknettls_post_processed.xml
-    wildcards: slide=219202
-    affected files:
-        /scratch/general/vast/u6073678/hooknet_tmp/masks/219202_mask.tif
