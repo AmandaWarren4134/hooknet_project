@@ -14,10 +14,9 @@ onstart:
 
 rule all:
     input:
-        f"{config['WORK']}/cpu_complete.done",          
+        f"{config['WORK']}/{FOLDER}/cpu_complete.done",          
         expand(
-            "{project}/results/geojson/{slide}.geojson",
-            project=config["PROJECT"],
+            f"{config['PROJECT']}/results/geojson/{FOLDER}/{{slide}}.geojson",
             slide=SLIDES
         )
 
@@ -26,10 +25,10 @@ rule all:
 # ---------------------------
 rule inference:
     input:
-        tif=lambda wildcards: f"{config['WORK']}/converted/{wildcards.slide}.tif",
-        mask=lambda wildcards: f"{config['WORK']}/masks/{wildcards.slide}_mask.tif"
+        tif=lambda wildcards: f"{config['WORK']}/{FOLDER}/converted/{wildcards.slide}.tif",
+        mask=lambda wildcards: f"{config['WORK']}/{FOLDER}/masks/{wildcards.slide}_mask.tif"
     output:
-        done=f"{config['PROJECT']}/results/inference/done/{{slide}}_hooknet.done",
+        done=f"{config['PROJECT']}/results/inference/{FOLDER}/done/{{slide}}_hooknet.done",
         xml=f"{config['PROJECT']}/results/inference/{FOLDER}/{{slide}}/post-processed/{{slide}}_hooknettls_post_processed.xml"
     params:
         sif=config["SIF"],
@@ -49,15 +48,15 @@ rule inference:
     shell:
         r"""
         set -euo pipefail
-        mkdir -p {params.work}/tmp/{wildcards.slide}
-        mkdir -p {params.work}/output/images/{wildcards.slide}
-        rm -rf {params.work}/output/images/{wildcards.slide}
-        mkdir -p {params.work}/output/images/{wildcards.slide}
+        mkdir -p {params.work}/{params.folder}/tmp/{wildcards.slide}
+        mkdir -p {params.work}/{params.folder}/output/images/{wildcards.slide}
+        rm -rf {params.work}/{params.folder}/output/images/{wildcards.slide}
+        mkdir -p {params.work}/{params.folder}/output/images/{wildcards.slide}
         mkdir -p {params.project}/results/inference/{params.folder}/{wildcards.slide}
-        mkdir -p {params.project}/results/inference/done
+        mkdir -p {params.project}/results/inference/{params.folder}/done
         /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec --nv \
-            --bind {params.work}:/workspace \
-            --bind {params.work}/tmp/{wildcards.slide}:/home/user/tmp \
+            --bind {params.work}/{params.folder}:/workspace \
+            --bind {params.work}/{params.folder}/tmp/{wildcards.slide}:/home/user/tmp \
             {params.sif} \
             python -m hooknettls \
             hooknettls.default.image_path=/workspace/converted/{wildcards.slide}.tif \
@@ -65,13 +64,13 @@ rule inference:
             hooknettls.default.model_weights=/home/user/pathology-hooknet-tls/weights/lung_weights.h5 \
             hooknettls.default.output_folder=/workspace/output/images/{wildcards.slide}/ \
             > {log} 2>&1
-        cp -r {params.work}/output/images/{wildcards.slide}/. \
+        cp -r {params.work}/{params.folder}/output/images/{wildcards.slide}/. \
               {params.project}/results/inference/{params.folder}/{wildcards.slide}/
         touch {output.done}
-        rm -f  {params.work}/input/{wildcards.slide}.svs
-        rm -f  {params.work}/masks/{wildcards.slide}_mask.tif
-        rm -rf {params.work}/output/images/{wildcards.slide}/
-        rm -rf {params.work}/tmp/{wildcards.slide}
+        rm -f  {params.work}/{params.folder}/input/{wildcards.slide}.svs
+        rm -f  {params.work}/{params.folder}/masks/{wildcards.slide}_mask.tif
+        rm -rf {params.work}/{params.folder}/output/images/{wildcards.slide}/
+        rm -rf {params.work}/{params.folder}/tmp/{wildcards.slide}
         """
 
 # ---------------------------
@@ -81,7 +80,7 @@ rule xml_to_geojson:
     input:
         xml=f"{config['PROJECT']}/results/inference/{FOLDER}/{{slide}}/post-processed/{{slide}}_hooknettls_post_processed.xml"
     output:
-        geojson=f"{config['PROJECT']}/results/geojson/{{slide}}.geojson"
+        geojson=f"{config['PROJECT']}/results/geojson/{FOLDER}/{{slide}}.geojson"
     params:
         project=config["PROJECT"]
     log: 
