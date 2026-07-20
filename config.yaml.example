@@ -1,0 +1,43 @@
+# Copy this file into config.yaml and edit paths for your system:
+#
+#   cp config.yaml.example config.yaml
+#
+# config.yaml is user-specific and should not be committed.
+
+# Project repository location
+# Contains scripts/, containers/, Snakefiles, etc.
+PROJECT: "/path/to/hooknet_project"
+
+
+# Scratch/work directory for intermediate files
+# Large temporary files (converted TIFFs, masks, etc.) go here.
+WORK: "/path/to/hooknet_work"
+
+
+# Apptainer/Singularity container
+SIF: "/path/to/hooknet_tls.sif"
+
+
+# Directory for Snakemake logs
+LOGS: "/path/to/hooknet_logs"
+
+
+# Name of this analysis folder
+# Used to separate different experiments/runs.
+FOLDER: "H_E"
+
+
+# Directory containing input SVS files
+#
+# Can contain:
+#   /box_raw/slide1.svs
+#
+# or:
+#   /box_raw/patient1/slide1.svs
+#
+# The pipeline searches recursively for *.svs files.
+SVS_DIR: "/path/to/svs_folder"
+
+
+# Number of CPU threads requested
+THREADS: 8

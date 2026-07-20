@@ -1,2 +1,4 @@
 .snakemake/
 logs/
+config.yaml
+test_output/

@@ -6,7 +6,7 @@ wildcard_constraints:
     project=config["PROJECT"].replace("/", "[^/]*")
 
 onstart:
-    shell("mkdir -p {config[LOGS]}")
+    os.makedirs(config["LOGS"], exist_ok=True)
     
 # ------------------------
 # DEFAULT TARGET
@@ -96,7 +96,7 @@ rule xml_to_geojson:
         cpus_per_task=1
     shell:
         """
-        mkdir -p {params.project}/results/geojson
+        mkdir -p {params.project}/results/geojson/{FOLDER}
         python scripts/asap_to_qupath_geojson.py \
             {input.xml} \
             {output.geojson}

@@ -8,17 +8,22 @@ debug = False
 config["SVS_DIR"] = f"{config['SVS_DIR']}/{config['FOLDER']}"
 SVS_DIR = config["SVS_DIR"]
 
-SVS_FILES = glob.glob(os.path.join(SVS_DIR, "*.svs"))
+SVS_FILES = sorted(glob.glob(os.path.join(SVS_DIR, "**", "*.svs"), recursive=True))
 
 def slide_id(path):
     return os.path.splitext(os.path.basename(path))[0]
 
-SLIDES = [slide_id(p) for p in SVS_FILES]
+SLIDE_TO_PATH = {}
+for p in SVS_FILES:
+    sid = slide_id(p)
+    if sid in SLIDE_TO_PATH:
+        raise ValueError(f"Duplicate slide ID found: {sid}")
+    SLIDE_TO_PATH[sid] = p
 
-SLIDE_TO_PATH = {slide_id(p): p for p in SVS_FILES}
+SLIDES = sorted(SLIDE_TO_PATH)
 
 if debug:
     print("SVS_DIR:", SVS_DIR)
     print("Found slides:")
-    for f in SVS_FILES:
-        print(f)
+    for sid in SLIDES:
+        print(f" - {sid}: {SLIDE_TO_PATH[sid]}")
