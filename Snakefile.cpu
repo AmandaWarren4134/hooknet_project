@@ -113,12 +113,43 @@ rule mask:
         """
 
 # ---------------------------
+# EXTRACT MPP SIDECAR
+# ---------------------------
+rule extract_mpp:
+    input:
+        f"{config['WORK']}/{FOLDER}/converted/{{slide}}.tif"
+    output:
+        f"{config['PROJECT']}/results/mpp/{FOLDER}/{{slide}}_mpp.json"
+    params:
+        project=config["PROJECT"],
+        work=config["WORK"]
+    resources:
+        slurm_account="stewartp",
+        slurm_partition="notchpeak-freecycle",
+        slurm_extra="--qos=notchpeak-freecycle",
+        runtime=5,
+        mem_mb=2000,
+        cpus_per_task=1
+    shell:
+        """
+        mkdir -p {params.project}/results/mpp/{FOLDER}
+        python {params.project}/scripts/extract_mpp.py \
+            --tif    {input} \
+            --slide  {wildcards.slide} \
+            --output {output}
+        """
+
+# ---------------------------
 # MARK CPU COMPLETE
 # ---------------------------
 rule cpu_complete:
     input:
-        expand(
+        masks=expand(
             f"{config['WORK']}/{FOLDER}/masks/{{slide}}_mask.tif",
+            slide=SLIDES
+        ),
+        mpp=expand(
+            f"{config['PROJECT']}/results/mpp/{FOLDER}/{{slide}}_mpp.json",
             slide=SLIDES
         )
     output:

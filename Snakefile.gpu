@@ -14,11 +14,13 @@ onstart:
 
 rule all:
     input:
-        f"{config['WORK']}/{FOLDER}/cpu_complete.done",          
+        f"{config['WORK']}/{FOLDER}/cpu_complete.done",
         expand(
             f"{config['PROJECT']}/results/geojson/{FOLDER}/{{slide}}.geojson",
             slide=SLIDES
-        )
+        ),
+        f"{config['PROJECT']}/results/tls_metrics/{FOLDER}/all_slides_tls.csv",
+        f"{config['PROJECT']}/results/tls_metrics/{FOLDER}/all_slides_summary.csv"
 
 # ---------------------------
 # HOOKNET INFERENCE (GPU)
@@ -100,3 +102,116 @@ rule xml_to_geojson:
             {output.geojson}
         > {log} 2>&1
         """
+
+# ---------------------------
+# TLS / GC FEATURE EXTRACTION
+# ---------------------------
+rule tls_metrics:
+    input:
+        geojson=f"{config['PROJECT']}/results/geojson/{FOLDER}/{{slide}}.geojson",
+        mpp=f"{config['PROJECT']}/results/mpp/{FOLDER}/{{slide}}_mpp.json"
+    output:
+        f"{config['PROJECT']}/results/tls_metrics/{FOLDER}/{{slide}}_tls.csv"
+    params:
+        project=config["PROJECT"]
+    log:
+        f"{config['LOGS']}/{{slide}}_tls_metrics.log"
+    resources:
+        slurm_account="stewartp",
+        slurm_partition="notchpeak-freecycle",
+        slurm_extra="--qos=notchpeak-freecycle",
+        runtime=30,
+        mem_mb=8000,
+        cpus_per_task=1
+    shell:
+        """
+        mkdir -p {params.project}/results/tls_metrics/{FOLDER}
+        python scripts/extract_tls_features.py \
+            --geojson {input.geojson} \
+            --mpp     {input.mpp} \
+            --slide   {wildcards.slide} \
+            --output  {params.project}/results/tls_metrics/{FOLDER}/ \
+            > {log} 2>&1
+        """
+
+# ---------------------------
+# COMBINE ALL TLS METRICS
+# ---------------------------
+rule combine_tls_metrics:
+    input:
+        expand(
+            f"{config['PROJECT']}/results/tls_metrics/{FOLDER}/{{slide}}_tls.csv",
+            slide=SLIDES
+        )
+    output:
+        all_tls     = f"{config['PROJECT']}/results/tls_metrics/{FOLDER}/all_slides_tls.csv",
+        all_summary = f"{config['PROJECT']}/results/tls_metrics/{FOLDER}/all_slides_summary.csv"
+    params:
+        project = config["PROJECT"],
+        folder  = FOLDER,
+        python  = "/uufs/chpc.utah.edu/sys/installdir/r8/snakemake/9.3.3/bin/python"
+    localrule: True
+    run:
+        from pathlib import Path
+        import numpy as np
+        import pandas as pd
+
+        tls_dfs = []
+        summary_rows = []
+
+        for f in input:
+            df = pd.read_csv(f)
+
+            slide = Path(f).stem.replace("_tls", "")
+            if len(df) == 0:
+                summary_rows.append({
+                    "slide": slide,
+                    "tls_count": 0,
+                    "gc_plus_tls_count": 0,
+                    "gc_plus_fraction": np.nan,
+                    "total_gc_count": 0,
+                    "mean_gc_per_tls": np.nan,
+                    "mean_tls_area_um2": np.nan,
+                    "median_tls_area_um2": np.nan,
+                    "mean_tls_circularity": np.nan,
+                    "median_tls_circularity": np.nan,
+                    "mean_tls_solidity": np.nan,
+                    "median_tls_solidity": np.nan,
+                    "mean_tls_aspect_ratio": np.nan,
+                    "median_tls_aspect_ratio": np.nan,
+                    "mean_gc_area_ratio": np.nan,
+                    "median_gc_area_ratio": np.nan,
+                    "mean_nn_dist_um": np.nan,
+                    "median_nn_dist_um": np.nan,
+                    "total_tls_area_um2": 0.0,
+                    "total_gc_area_um2": 0.0,
+                })
+                continue
+            tls_dfs.append(df)
+
+            slide = df["slide"].iloc[0]
+            d = {"slide": slide}
+            d["tls_count"]         = len(df)
+            d["gc_plus_tls_count"] = int(df["gc_present"].sum())
+            d["gc_plus_fraction"]  = df["gc_present"].mean()
+            d["total_gc_count"]    = int(df["gc_count"].sum())
+            d["mean_gc_per_tls"]   = df["gc_count"].mean()
+            for col in ["tls_area_um2", "tls_circularity", "tls_solidity",
+                        "tls_aspect_ratio", "gc_area_ratio", "nn_dist_um"]:
+                if col in df.columns:
+                    d[f"mean_{col}"]   = df[col].mean()
+                    d[f"median_{col}"] = df[col].median()
+            d["total_tls_area_um2"] = df["tls_area_um2"].sum()
+            d["total_gc_area_um2"]  = df["gc_total_area_um2"].sum()
+            summary_rows.append(d)
+
+        if tls_dfs:
+            all_tls = pd.concat(tls_dfs, ignore_index=True)
+        else:
+            all_tls = pd.DataFrame()
+        all_tls.to_csv(output.all_tls, index=False)
+        print(f"Wrote {len(all_tls)} total TLS rows -> {output.all_tls}")
+
+        summary_df = pd.DataFrame(summary_rows)
+        summary_df.to_csv(output.all_summary, index=False)
+        print(f"Wrote {len(summary_df)} slide summary rows -> {output.all_summary}")
