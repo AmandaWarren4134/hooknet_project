@@ -1,9 +1,0 @@
-PROJECT: "/scratch/rai/vast1/stewartp/hooknet_project"
-WORK: "/scratch/general/vast/u6073678/hooknet_tmp"
-SIF: "/scratch/rai/vast1/stewartp/hooknet_project/containers/hooknet_tls.sif"
-LOGS: "/scratch/general/vast/u6073678/hooknet_logs" 
-
-FOLDER: "H_E"
-SVS_DIR: "/scratch/rai/vast1/stewartp/hooknet_project/box_raw"
-
-THREADS: 8
