@@ -142,6 +142,7 @@ rule extract_mpp:
     output:
         f"{config['PROJECT']}/results/mpp/{FOLDER}/{{slide}}_mpp.json"
     params:
+        sif=config["SIF"],
         project=config["PROJECT"],
         work=config["WORK"],
         scripts=config["SCRIPTS"]
@@ -153,11 +154,16 @@ rule extract_mpp:
         mem_mb=2000,
         cpus_per_task=1
     shell:
-        """
+        r"""
+        set -euo pipefail
         mkdir -p {params.project}/results/mpp/{FOLDER}
-        python {params.scripts}/extract_mpp.py \
-            --tif    {input} \
-            --slide  {wildcards.slide} \
+
+        /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec \
+        --bind {params.scripts}:/scripts \
+        {params.sif} \
+        python /scripts/extract_mpp.py \
+            --tif {input} \
+            --slide {wildcards.slide} \
             --output {output}
         """
 
