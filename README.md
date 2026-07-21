@@ -441,7 +441,7 @@ Snakefile.gpu is the first place to check.
 
 | Script                        | Purpose                                        |
 | ----------------------------- | ---------------------------------------------- |
-| `save_image_at_spacing.py.py` | Convert SVS to pyramidal TIFF                  |
+| `save_image_at_spacing.py` | Convert SVS to pyramidal TIFF                  |
 | `create_mask_tif.py`          | Generate tissue masks                          |
 | `asap_to_qupath_geojson.py`   | Convert ASAP XML annotations to QuPath GeoJSON |
 
