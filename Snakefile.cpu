@@ -63,6 +63,7 @@ rule convert:
         cpus_per_task=8
     shell:
         r"""
+        set -euo pipefail
         mkdir -p {params.work}/{FOLDER}/input
         mkdir -p {params.work}/{FOLDER}/converted
         mkdir -p {params.work}/{FOLDER}/tmp/{wildcards.slide}
@@ -72,8 +73,8 @@ rule convert:
         /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec \
         --bind {params.work}/{FOLDER}:/workspace \
         --bind {params.work}/{FOLDER}/tmp/{wildcards.slide}:/home/user/tmp \
-        {params.sif} \
         --bind {params.scripts}:/scripts \
+        {params.sif} \
         python /scripts/save_image_at_spacing.py \
         -i /workspace/input/{wildcards.slide}.svs \
         -s 0.5 \
@@ -108,11 +109,11 @@ rule mask:
         cpus_per_task=4
     shell:
         r"""
+        set -euo pipefail
         mkdir -p {params.work}/{FOLDER}/masks
 
         /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec \
         --bind {params.work}/{FOLDER}:/workspace \
-        {params.sif} \
         --bind {params.scripts}:/scripts \
         {params.sif} \
         python /scripts/create_mask_tif.py \
