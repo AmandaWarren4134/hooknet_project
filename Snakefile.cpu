@@ -71,6 +71,10 @@ rule convert:
         cp {input.svs} {params.work}/{FOLDER}/input/{wildcards.slide}.svs
 
         /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec \
+        --env TMPDIR=/home/user/tmp \
+        --env TMP=/home/user/tmp \
+        --env TEMP=/home/user/tmp \
+        --env TEMPDIR=/home/user/tmp \
         --bind {params.work}/{FOLDER}:/workspace \
         --bind {params.work}/{FOLDER}/tmp/{wildcards.slide}:/home/user/tmp \
         --bind {params.scripts}:/scripts \
@@ -111,14 +115,22 @@ rule mask:
         r"""
         set -euo pipefail
         mkdir -p {params.work}/{FOLDER}/masks
+        mkdir -p {params.work}/{FOLDER}/tmp/{wildcards.slide}
 
         /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec \
+        --env TMPDIR=/home/user/tmp \
+        --env TMP=/home/user/tmp \
+        --env TEMP=/home/user/tmp \
+        --env TEMPDIR=/home/user/tmp \
         --bind {params.work}/{FOLDER}:/workspace \
+        --bind {params.work}/{FOLDER}/tmp/{wildcards.slide}:/home/user/tmp \
         --bind {params.scripts}:/scripts \
         {params.sif} \
         python /scripts/create_mask_tif.py \
         --input /workspace/converted/{wildcards.slide}.tif \
         --output /workspace/masks/{wildcards.slide}_mask.tif
+
+        rm -rf {params.work}/{FOLDER}/tmp/{wildcards.slide}
         """
 
 # ---------------------------
