@@ -7,6 +7,8 @@ wildcard_constraints:
 
 onstart:
     os.makedirs(config["LOGS"], exist_ok=True)
+
+localrules: all, combine_tls_metrics
     
 # ------------------------
 # DEFAULT TARGET
@@ -84,7 +86,8 @@ rule xml_to_geojson:
     output:
         geojson=f"{config['PROJECT']}/results/geojson/{FOLDER}/{{slide}}.geojson"
     params:
-        project=config["PROJECT"]
+        project=config["PROJECT"],
+        scripts=config["SCRIPTS"]
     log: 
         f"{config['LOGS']}/{{slide}}_xml_to_geojson.log"
     resources:
@@ -97,10 +100,10 @@ rule xml_to_geojson:
     shell:
         """
         mkdir -p {params.project}/results/geojson/{FOLDER}
-        python scripts/asap_to_qupath_geojson.py \
+        python {params.scripts}/asap_to_qupath_geojson.py \
             {input.xml} \
-            {output.geojson}
-        > {log} 2>&1
+            {output.geojson} \
+            > {log} 2>&1
         """
 
 # ---------------------------
@@ -113,7 +116,8 @@ rule tls_metrics:
     output:
         f"{config['PROJECT']}/results/tls_metrics/{FOLDER}/{{slide}}_tls.csv"
     params:
-        project=config["PROJECT"]
+        project=config["PROJECT"],
+        scripts=config["SCRIPTS"]
     log:
         f"{config['LOGS']}/{{slide}}_tls_metrics.log"
     resources:
@@ -126,7 +130,7 @@ rule tls_metrics:
     shell:
         """
         mkdir -p {params.project}/results/tls_metrics/{FOLDER}
-        python scripts/extract_tls_features.py \
+        python {params.scripts}/extract_tls_features.py \
             --geojson {input.geojson} \
             --mpp     {input.mpp} \
             --slide   {wildcards.slide} \
@@ -148,9 +152,7 @@ rule combine_tls_metrics:
         all_summary = f"{config['PROJECT']}/results/tls_metrics/{FOLDER}/all_slides_summary.csv"
     params:
         project = config["PROJECT"],
-        folder  = FOLDER,
-        python  = "/uufs/chpc.utah.edu/sys/installdir/r8/snakemake/9.3.3/bin/python"
-    localrule: True
+        folder  = FOLDER
     run:
         from pathlib import Path
         import numpy as np

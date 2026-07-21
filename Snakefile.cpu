@@ -50,7 +50,8 @@ rule convert:
     params:
         sif=config["SIF"],
         project=config["PROJECT"],
-        work=config["WORK"]
+        work=config["WORK"],
+        scripts=config["SCRIPTS"]
     threads:
         config["THREADS"]
     resources:
@@ -64,19 +65,23 @@ rule convert:
         r"""
         mkdir -p {params.work}/{FOLDER}/input
         mkdir -p {params.work}/{FOLDER}/converted
-        mkdir -p {params.work}/{FOLDER}/tmp
+        mkdir -p {params.work}/{FOLDER}/tmp/{wildcards.slide}
 
         cp {input.svs} {params.work}/{FOLDER}/input/{wildcards.slide}.svs
 
         /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec \
         --bind {params.work}/{FOLDER}:/workspace \
-        --bind {params.work}/{FOLDER}/tmp:/home/user/tmp \
+        --bind {params.work}/{FOLDER}/tmp/{wildcards.slide}:/home/user/tmp \
         {params.sif} \
-        python {params.project}/scripts/save_image_at_spacing.py.py \
+        --bind {params.scripts}:/scripts \
+        python /scripts/save_image_at_spacing.py \
         -i /workspace/input/{wildcards.slide}.svs \
         -s 0.5 \
         -o /workspace/converted/  \
-        -t /workspace/tmp/
+        -t /home/user/tmp/
+
+        rm -rf {params.work}/{FOLDER}/tmp/{wildcards.slide}
+        rm -f  {params.work}/{FOLDER}/input/{wildcards.slide}.svs
         """
 
 # ---------------------------
@@ -90,7 +95,8 @@ rule mask:
     params:
         sif=config["SIF"],
         work=config["WORK"],
-        project=config["PROJECT"]
+        project=config["PROJECT"],
+        scripts=config["SCRIPTS"]
     threads:
         config["THREADS"] // 2  # Assuming mask creation is less CPU intensive than conversion
     resources:
@@ -107,7 +113,9 @@ rule mask:
         /uufs/chpc.utah.edu/sys/installdir/apptainer/1.4.1/bin/apptainer exec \
         --bind {params.work}/{FOLDER}:/workspace \
         {params.sif} \
-        python {params.project}/scripts/create_mask_tif.py \
+        --bind {params.scripts}:/scripts \
+        {params.sif} \
+        python /scripts/create_mask_tif.py \
         --input /workspace/converted/{wildcards.slide}.tif \
         --output /workspace/masks/{wildcards.slide}_mask.tif
         """
@@ -122,7 +130,8 @@ rule extract_mpp:
         f"{config['PROJECT']}/results/mpp/{FOLDER}/{{slide}}_mpp.json"
     params:
         project=config["PROJECT"],
-        work=config["WORK"]
+        work=config["WORK"],
+        scripts=config["SCRIPTS"]
     resources:
         slurm_account="stewartp",
         slurm_partition="notchpeak-freecycle",
@@ -133,7 +142,7 @@ rule extract_mpp:
     shell:
         """
         mkdir -p {params.project}/results/mpp/{FOLDER}
-        python {params.project}/scripts/extract_mpp.py \
+        python {params.scripts}/extract_mpp.py \
             --tif    {input} \
             --slide  {wildcards.slide} \
             --output {output}

@@ -5,8 +5,7 @@ configfile: "config.yaml"
 
 debug = False
 
-config["SVS_DIR"] = f"{config['SVS_DIR']}/{config['FOLDER']}"
-SVS_DIR = config["SVS_DIR"]
+SVS_DIR = f"{config['SVS_DIR']}/{config['FOLDER']}"
 
 SVS_FILES = sorted(glob.glob(os.path.join(SVS_DIR, "**", "*.svs"), recursive=True))
 
@@ -21,6 +20,9 @@ for p in SVS_FILES:
     SLIDE_TO_PATH[sid] = p
 
 SLIDES = sorted(SLIDE_TO_PATH)
+
+if not SLIDES:
+    raise ValueError(f"No SVS files found in {SVS_DIR}")
 
 if debug:
     print("SVS_DIR:", SVS_DIR)
