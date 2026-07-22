@@ -5,7 +5,6 @@ TLS/GC Feature Extraction
 import argparse
 import json
 import math
-import sys
 import warnings
 from pathlib import Path
 
@@ -13,8 +12,6 @@ import geopandas as gpd
 import numpy as np
 import pandas as pd
 import tifffile
-from shapely.geometry import shape
-from shapely.validation import make_valid
 from scipy.spatial import cKDTree
 
 
@@ -53,10 +50,8 @@ def repair_geometry(geom, label=""):
         return None
     if not geom.is_valid:
         warnings.warn(
-            f"Invalid geometry{' for ' + label if label else ''}; "
-            "repairing with make_valid()."
+            f"Invalid geometry{' for ' + label if label else ''}."
         )
-        geom = make_valid(geom)
     return geom
 
 
